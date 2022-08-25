@@ -25,6 +25,6 @@ def main():
             first = int(input("첫번쨰수를 입력하세요:"))
             second = int(input("두번쨰수를 입력하세요:"))
             calculatorService.caluclate(first,second)           
-                
-    if __name__ == '__main__':
+
+if __name__ == '__main__':
         main()

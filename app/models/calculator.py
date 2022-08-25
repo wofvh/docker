@@ -1,6 +1,7 @@
 ###c 
 def calculate():
     pass
+
 class Calculator(object):
     def __init__(self,first,second):
         self.first = first

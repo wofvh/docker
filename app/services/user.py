@@ -1,7 +1,13 @@
 from app.models.user import User
 
 class user(object):
-    def __init__(self) -> None:
+    def __init__(self,id,password):
+        self.id = id
+        self.password = password
         pass
-    def user_id(self,id,password):
         
+    def get_id(self):
+        return self.id
+    
+    def get_password(self):
+        return self.password

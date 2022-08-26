@@ -25,7 +25,6 @@ class GradeService(object):
     def get_grade(self, name, korean, english, math):
         self.set_score(name, korean, english, math)
         return self.credit
-        name, korean, english, math
     
 
 

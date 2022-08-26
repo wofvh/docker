@@ -6,8 +6,6 @@ basedir = os.path.dirname(os.path.abspath(__file__))
 from app.services.calculator import CalculatorService
 from app.services.user import UserService
 
-
-
 def print_menu():
     print("0. 전체종료프로그램 종료") 
     print("1. 계산기 프로그램")
@@ -26,7 +24,7 @@ def main():
         elif meun == '1':
             calculatorService = CalculatorService()
             first = int(input("첫번쨰수를 입력하세요:"))
-            second = int(input("두번쨰수를 입력하세요:"))2
+            second = int(input("두번쨰수를 입력하세요:"))
             calculatorService.caluclate(first,second)
         elif meun == "2":
             userService = UserService()

@@ -2,7 +2,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import requests
 
-
 class BugsMusic(object):
 
     url = 'https://music.bugs.co.kr/chart/track/realtime/total?'
@@ -47,7 +46,6 @@ class BugsMusic(object):
     def df_to_csv(self):
         path = './data/bugs.csv'
         self.df.to_csv(path, sep=',', na_rep='NaN')
-
 
 
     @staticmethod

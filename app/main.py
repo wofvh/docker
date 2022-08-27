@@ -55,6 +55,8 @@ def main():
                     Quiz.quiz_02()
                 elif quiz_number == '3':
                     Quiz.quiz_03()
+                elif quiz_number == '4':
+                    Quiz.quiz_04()
                                      
 if __name__ == '__main__':
         main()

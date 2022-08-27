@@ -75,7 +75,6 @@ class BugsMusic(object):
 
             elif menu == '5':
                 bugs.df_to_csv()
-
             else:
                 print('Wrong Number')
                 continue

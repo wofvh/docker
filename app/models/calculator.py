@@ -22,13 +22,10 @@
 #     def divide(self):
 #         result = self.first / self.second
 #         return result
-    
-    
+        
 # # c = calculate(a, b)
 # print("덧샘", c.add())
 # print("뺄샘", c.minus())
 # print("곱샘", c.mult())
 # print("나눗샘", c.div())
     
-class Calculate(object):
-    def calcualate

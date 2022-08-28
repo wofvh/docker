@@ -1,18 +1,39 @@
-#  . 아래와 같은 실행 결과가 나올 수 있도록 Letter 클래스 코드 작성
-#  - write 메소드 - 편지내용 작성
-#  - show 메소드 – 작성된 내용 반환
+#계산기 
 
-# 5개 과목의 평균 점수 구하기 
+class Calculator(object):
+    def __init__ (self,first,second):
+        self.first = first
+        self.second = second
+    
+    def add(self):
+        result = self.first + self.second
+        return result
+    
+    def minus(self):
+        result = self.first - self.second
+        return result
+    
+    def mult(self):
+        result = self.first * self.second
+        return result
+    
+    def divide(self):
+        result = self.first / self.second
+        return result
+    
+# c = calculator(a, b)
 
-a = ["프로그래밍 언어 점수" ,80 ]
-b = ["databais" ,66]
-c = ["운영체제",73]
-d = ["전자계산기",90]
-e = ["네트워크",94]
+                
+from app.models.calculator import Calculator
 
-print(a[1]+b[1]+c[1]+d[1]+e[1])
-
-a = 80 + 66 + 73 + 90 + 94
-
-print(a)
-print(a/5)
+class CalculatorService(object):
+    def __init__(self) -> None:
+        pass
+    def Calculator(self,first,second):
+        calculator = Calculator(self,first, second)
+        print(f'첫번째수:{calculator.first}')
+        print(f'두번째수:{calculator.second}')
+        print(f'{calculator.first} + {calculator.second} = {calculator.add()}')
+        print(f'{calculator.first} - {calculator.second} = {calculator.minus}')
+        print(f'{calculator.first} * {calculator.second} = {calculator.mult()}')
+        print(f'{calculator.first} / {calculator.second} = {calculator.divide()}')

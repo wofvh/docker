@@ -3,6 +3,7 @@ from icecream import ic
 import pandas as pd
 import numpy as np
 import string
+
 class PandasQuiz(object):
     def __init__(self) -> None:
         pass
@@ -33,27 +34,29 @@ class PandasQuiz(object):
         return np.random.randint(0,101,(10, 4))
     
     def quiz_04(self) :
-        df = pd.DataFrame(
+        df3 = pd.DataFrame(
             self.score1(), 
             index=self.id1(), 
             columns=['국어', '영어', '수학', '사회'])
-        ic(df) 
+        ic(df3) 
         
+        
+    def quiz_05(self):
+        df4 = pd.DataFrame(
+            self.score(),
+            self.id(),
+            columns=['국어'])
+        ic(df4)    
         
     def id(self):
         return [ "".join([random.choice(string.ascii_lowercase) 
                           for i in range(1)]) for i in range(10)]
     
     def score(self):
-        return
+        return np.random.randint(0,101(10,1))
         
     
-    def quiz_05(self):
-        df = pd.DataFrame(
-            self.score(),
-            index=self.id(),
-            columns=['국어'])
-        ic(df) 
+    
         
         
     ''' 
@@ -90,7 +93,7 @@ class PandasQuiz(object):
     def quiz_04(self):
         ic(self.id())
         ic(self.score())
-        df4 = pd.DataFrame.from_dict({self.get_id():self.get_score()}, orient='index', columns=['국어', '영어', '수학', '사회'])
+        df4 = pd.DataFrame.from_dict({self.id():self.score()}, orient='index', columns=['국어', '영어', '수학', '사회'])
         for i in range(8):
             df4 = pd.concat([df4,pd.DataFrame.from_dict({self.id():self.score()}, orient='index', columns=['국어', '영어', '수학', '사회'])],axis=0)
         

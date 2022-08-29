@@ -39,13 +39,13 @@ class PandasQuiz(object):
         ic(df3) 
         
         
-    def quiz_04(self) :
-        self.subjeact = ['국어', '영어', '수학', '사회']
-        df3 = pd.DataFrame(
+    def quiz_05(self,subject) :
+        self.subject = subject
+        df5 = pd.DataFrame(
             self.score(), 
             index=self.id(), 
-            columns=['국어', '영어', '수학', '사회'])
-        ic(df3)   
+            columns=['국어', '영어', '수학', '사회'])[f"{self.subject}"]
+        ic(df5)   
         
     # def id(self):
     #     return (random.choice(string.ascii_lowercase) 

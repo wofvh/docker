@@ -1,6 +1,9 @@
+import random
+from unicodedata import name
 from icecream import ic
 import pandas as pd
 import numpy as np
+import string
 class PandasQuiz(object):
     def __init__(self) -> None:
         pass
@@ -30,22 +33,23 @@ class PandasQuiz(object):
         ic(df1)
     
     def quiz_03(self):
-        df2= pd.DataFrame(np.random.randint(10,100,size=(2,3)))
+        df2= pd.DataFrame(np.random.randint(10,101,size=(2,3)))
         ic(df2)
-        
+
+    def get_id(self):
+        id = ["".join(random.choice(string.ascii_letters)) for i in range(5)] #id 리턴 string 값에 ''를 넣어줌
+        return id
+    
+    def get_score(self):
+        return random.sample(range(1,101),4)
+    
     def quiz_04(self):
-        ic(self.id())
-        ic(self.score())
-        df4 = pd.DataFrame.from_dict({self.id():self.score()},
-                                     orient='index', columns=['국어', '영어', '수학', '사회'])
-        for i in range(8):
-            df4 = pd.concat([df4,pd.DataFrame.from_dict({self.id():self.score()}, 
-                                                                           orient='index', columns=['국어', '영어', '수학', '사회'])],axis=0)
-        ic(df4)  
-  
+        name = ""
+                       
         
+    
+            
     #   ''' 
-        
     #     Q4 국어, 영어, 수학, 사회 4과목을 시험치른 10명의 학생들의 성적표 작성. 단 점수 0 ~ 100이고 학생은 랜덤 알파벳 5자리 ID 로 표기
     #     ic| self.id(): 'HKKHc'
     #     ic| self.score(): 22

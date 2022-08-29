@@ -39,9 +39,9 @@ class PandasQuiz(object):
         
     def id(self):
         return [ "".join([random.choice(string.ascii_lowercase) 
-                          for i in range(5)]) for i in range(10)]
+                          for i in range(3)]) for i in range(8)]
     def score(self):
-        return np.random.randint(0,100,(10, 4))
+        return np.random.randint(0,101,(10, 4))
     
     def quiz_04(self) :
         df = pd.DataFrame(
@@ -49,9 +49,6 @@ class PandasQuiz(object):
             index=self.id(), 
             columns=['국어', '영어', '수학', '사회'])
         ic(df) 
-
-
-
 
 
     

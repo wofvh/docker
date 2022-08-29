@@ -1,6 +1,5 @@
 import os
 import sys
-4
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 basedir = os.path.dirname(os.path.abspath(__file__))
 from app.services.pandas_quiz import PandasQuiz

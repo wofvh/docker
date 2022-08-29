@@ -15,26 +15,34 @@ class PandasQuiz(object):
                  2  2  4  6
         '''
     def quiz_01(self) -> None :
-        df1 = pd.DataFrame.from_dict(
+        df = pd.DataFrame.from_dict(
              {'1': [ 1 , 3 , 5,],'2': [2 , 4 , 6]},
              orient='index',
              columns = ['a','b','c'])
-        ic(df1)
+        ic(df)
         
 
     def quiz_02(self) -> None :
-        df2 = pd.DataFrame.from_dict(
+        df1 = pd.DataFrame.from_dict(
              {'1': [ 1 , 2 , 3,],'2':[ 4, 5 , 6],'3': [ 7, 8 , 9],'4': [10, 11 , 12]}, 
              orient='index',
              columns = ['a','b','c'])
-        ic(df2)
+        ic(df1)
     
     def quiz_03(self):
-        df3= pd.DataFrame(np.random.randint(10,100,size=(2,3)))
-        ic(df3)
+        df2= pd.DataFrame(np.random.randint(10,100,size=(2,3)))
+        ic(df2)
         
-        
-        
+    def quiz_04(self) -> None :
+        ic(self.id())
+        ic(self.score())
+        df4 = pd.DataFrame.from_dict({self.id():self.score()},
+                                     orient='index', columns=['국어', '영어', '수학', '사회'])
+        for i in range(8):
+            df4 = pd.concat([df4,pd.DataFrame.from_dict({self.id():self.score()}, 
+                                                                           orient='index', columns=['국어', '영어', '수학', '사회'])],axis=0)
+        ic(df4)  
+  
         
     #   ''' 
         
@@ -52,10 +60,3 @@ class PandasQuiz(object):
     #            QDBCw  44  32   8  29
     #            PZOTP  94  78  79  96
     #            GOJKU  62  17  75  49
-        
-    #     '''
-        
-        #  Q3 두자리 정수를 랜덤으로 2행 3열 데이터프레임을 생성
-        # ic| df3:     0   1   2
-        #          0  95  25  74
-        #          1  44  24  97

@@ -1,0 +1,38 @@
+version: "3.3"
+
+services:
+  db:
+    container_name: "db"
+    build: ./docker/mysql
+    restart: always
+    tty: true
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password 
+      MYSQL_ROOT_PASSWORD: password 
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d 
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d 
+      
+    networks:
+      - local-net
+
+  # FastAPI
+  api:
+    links:
+      - db
+    container_name: "api"
+    build: ./docker/api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./code:/usr/src/server
+    networks:
+      - local-net
+
+networks:
+  local-net:
+    driver: bridge

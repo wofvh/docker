@@ -41,11 +41,21 @@ class PandasQuiz(object):
         return id
     
     def get_score(self):
-        return random.sample(range(1,101),4)
+        return np.random.randint(0,100(10,4))
     
     def quiz_04(self):
-        name = ""
-                       
+        
+        df3 = pd.DataFrame.from_dict({self.get_id():self.get_score})
+        
+        
+    def quiz_04(self):
+        ic(self.id())
+        ic(self.score())
+        df4 = pd.DataFrame.from_dict({self.get_id():self.get_score()}, orient='index', columns=['국어', '영어', '수학', '사회'])
+        for i in range(8):
+            df4 = pd.concat([df4,pd.DataFrame.from_dict({self.id():self.score()}, orient='index', columns=['국어', '영어', '수학', '사회'])],axis=0)
+        
+        ic(df4)
         
     
             

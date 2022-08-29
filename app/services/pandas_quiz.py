@@ -4,6 +4,14 @@ from icecream import ic
 import pandas as pd
 import numpy as np
 import string
+
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+basedir = os.path.dirname(os.path.abspath(__file__))
+from app.api.endpoints.url import Url
+from app.constants.menus import LOGIN, LOGOUT, CALCULATOR, GRADE, \
+    QUIZ_1, QUIZ_2, QUIZ_3, QUIZ_4
 class PandasQuiz(object):
     def __init__(self) -> None:
         pass
@@ -41,7 +49,7 @@ class PandasQuiz(object):
         return [ "".join([random.choice(string.ascii_lowercase) 
                           for i in range(3)]) for i in range(8)]
     def score(self):
-        return np.random.randint(0,101,(10, 4))
+        return np.random.randint(0,101,(10, 5))
     
     def quiz_04(self) :
         df = pd.DataFrame(
@@ -50,16 +58,14 @@ class PandasQuiz(object):
             columns=['국어', '영어', '수학', '사회'])
         ic(df) 
 
-
+    def id(self):
+        rand_str = ''
+        for i in range(5):
+            rand_str += random.choice(string.ascii_letters)
+        return rand_str
     
-    # def id(self):
-    #     rand_str = ''
-    #     for i in range(5):
-    #         rand_str += random.choice(string.ascii_letters)
-    #     return rand_str
-    
-    # def score(self):
-    #     return random.sample(range(0,100), 4)
+    def score(self):
+        return random.sample(range(0,100), 5)
 
     # def quiz_04(self):
     #     ic(self.id())

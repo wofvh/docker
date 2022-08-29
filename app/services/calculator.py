@@ -10,3 +10,5 @@ class CalculatorService(object):
         print(f'{calculator.first} - {calculator.second} = {calculator.minus()}')
         print(f'{calculator.first} * {calculator.second} = {calculator.mult()}')
         print(f'{calculator.first} / {calculator.second} = {calculator.divide()}')
+        
+        

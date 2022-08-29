@@ -12,7 +12,7 @@ class Url:
                 input('id'), 
                 input('password'))
         elif menu == CALCULATOR:
-            CalculatorService().calculate(
+            CalculatorService().calculator(
                 int(input('첫번째 값 입력: ')), 
                 int(input('두번째 값 입력: ')))
         elif menu == GRADE:
@@ -26,3 +26,6 @@ class Url:
         elif menu == QUIZ_2: PandasQuiz().quiz_02()
         elif menu == QUIZ_3: PandasQuiz().quiz_03()
         elif menu == QUIZ_4: PandasQuiz().quiz_04()
+        elif menu == QUIZ_5: PandasQuiz().quiz_04()
+        elif menu == QUIZ_6: PandasQuiz().quiz_04()
+        elif menu == QUIZ_7: PandasQuiz().quiz_04()

@@ -2,7 +2,7 @@ from app.models.calculator import Calculator
 class CalculatorService(object):
     def __init__(self) -> None:
         pass
-    def caluclator(self, first, second):
+    def calculator(self, first, second):
         calculator = Calculator(first, second)
         print(f'첫번째수:{calculator.first}')
         print(f'두번째수:{calculator.second}')

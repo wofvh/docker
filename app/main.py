@@ -68,7 +68,7 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 basedir = os.path.dirname(os.path.abspath(__file__))
 from app.api.endpoints.url import Url
 from app.constants.menus import LOGIN, LOGOUT, CALCULATOR, GRADE, \
-    QUIZ_1, QUIZ_2, QUIZ_3, QUIZ_4
+    QUIZ_1, QUIZ_2, QUIZ_3, QUIZ_4, QUIZ_5, QUIZ_6, QUIZ_7
 
 def print_menu():
     print(' ###################')
@@ -80,6 +80,9 @@ def print_menu():
     print(f'퀴즈 2 : {QUIZ_2}')
     print(f'퀴즈 3 : {QUIZ_3}')
     print(f'퀴즈 4 : {QUIZ_4}')
+    print(f'퀴즈 4 : {QUIZ_5}')
+    print(f'퀴즈 4 : {QUIZ_6}')
+    print(f'퀴즈 4 : {QUIZ_7}')
     menu = input('메뉴에서 URL을 카피해서 입력하시오\n')
     print(' ###################')
     return menu

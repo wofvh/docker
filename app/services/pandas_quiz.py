@@ -33,7 +33,7 @@ class PandasQuiz(object):
         df2= pd.DataFrame(np.random.randint(10,100,size=(2,3)))
         ic(df2)
         
-    def quiz_04(self) -> None :
+    def quiz_04(self):
         ic(self.id())
         ic(self.score())
         df4 = pd.DataFrame.from_dict({self.id():self.score()},
@@ -60,3 +60,4 @@ class PandasQuiz(object):
     #            QDBCw  44  32   8  29
     #            PZOTP  94  78  79  96
     #            GOJKU  62  17  75  49
+        

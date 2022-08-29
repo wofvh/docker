@@ -35,29 +35,50 @@ class PandasQuiz(object):
     def quiz_03(self):
         df2= pd.DataFrame(np.random.randint(10,101,size=(2,3)))
         ic(df2)
+        
+        
+    def id(self):
+        return [ "".join([random.choice(string.ascii_lowercase) 
+                          for i in range(5)]) for i in range(10)]
+    def score(self):
+        return np.random.randint(0,100,(10, 4))
+    
+    def quiz_04(self) :
+        df = pd.DataFrame(
+            self.score(), 
+            index=self.id(), 
+            columns=['국어', '영어', '수학', '사회'])
+        ic(df) 
 
-    def get_id(self):
-        id = ["".join(random.choice(string.ascii_letters)) for i in range(5)] #id 리턴 string 값에 ''를 넣어줌
-        return id
+
+
+
+
     
-    def get_score(self):
-        return np.random.randint(0,100(10,4))
+    # def id(self):
+    #     rand_str = ''
+    #     for i in range(5):
+    #         rand_str += random.choice(string.ascii_letters)
+    #     return rand_str
     
-    def quiz_04(self):
+    # def score(self):
+    #     return random.sample(range(0,100), 4)
+
+    # def quiz_04(self):
+    #     ic(self.id())
+    #     ic(self.score())
+    #     df4 = pd.DataFrame.from_dict({self.get_id():self.get_score()}, orient='index', columns=['국어', '영어', '수학', '사회'])
+    #     for i in range(8):
+    #         df4 = pd.concat([df4,pd.DataFrame.from_dict({self.id():self.score()}, orient='index', columns=['국어', '영어', '수학', '사회'])],axis=0)
         
-        df3 = pd.DataFrame.from_dict({self.get_id():self.get_score})
-        
-        
-    def quiz_04(self):
-        ic(self.id())
-        ic(self.score())
-        df4 = pd.DataFrame.from_dict({self.get_id():self.get_score()}, orient='index', columns=['국어', '영어', '수학', '사회'])
-        for i in range(8):
-            df4 = pd.concat([df4,pd.DataFrame.from_dict({self.id():self.score()}, orient='index', columns=['국어', '영어', '수학', '사회'])],axis=0)
-        
-        ic(df4)
+    #     ic(df4)
         
     
+ 
+ 
+ 
+ 
+ 
             
     #   ''' 
     #     Q4 국어, 영어, 수학, 사회 4과목을 시험치른 10명의 학생들의 성적표 작성. 단 점수 0 ~ 100이고 학생은 랜덤 알파벳 5자리 ID 로 표기

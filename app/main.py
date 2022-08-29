@@ -2,7 +2,7 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 basedir = os.path.dirname(os.path.abspath(__file__))
-sys.modules[__name__] = main()
+# sys.modules[__name__] = main()
 from app.services.pandas_quiz import PandasQuiz
 from app.services.grade import GradeService
 from app.services.calculator import CalculatorService

@@ -25,36 +25,40 @@ class PandasQuiz(object):
         ic(df2)
         
         
-    def id1(self):
+    def id(self):
         return [ "".join([random.choice(string.ascii_lowercase) 
                           for i in range(5)]) for i in range(10)]
-    def score1(self):
+    def score(self):
         return np.random.randint(0,101,(10, 4))
     
     def quiz_04(self) :
         df3 = pd.DataFrame(
-            self.score1(), 
-            index=self.id1(), 
+            self.score(), 
+            index=self.id(), 
             columns=['국어', '영어', '수학', '사회'])
         ic(df3) 
         
         
-    def quiz_05(self):
-        df4 = pd.DataFrame(
-            self.score(),
-            self.id(),
-            columns=['국어'])
-        ic(df4)    
+    def quiz_04(self) :
+        self.subjeact = ['국어', '영어', '수학', '사회']
+        df3 = pd.DataFrame(
+            self.score(), 
+            index=self.id(), 
+            columns=['국어', '영어', '수학', '사회'])
+        ic(df3)   
         
-    def id(self):
-        return [ "".join([random.choice(string.ascii_lowercase) 
-                          for i in range(1)]) for i in range(10)]
+    # def id(self):
+    #     return (random.choice(string.ascii_lowercase) 
+    #                       for i in range(5) for i in range(10))
     
-    def score(self):
-        return np.random.randint(0,101(10,1))
+    # def score(self):
+    #     return np.random.randint(0,101(10))
+    
+    # def columns():
+    #     return '국어'
         
     
-    
+
         
         
     ''' 
@@ -74,28 +78,36 @@ class PandasQuiz(object):
         #                      wuxIm    58
         #                      AOQFG    32
         #                      jHChe    59
-        #                      Name: 국어, dtype: int64
-        # '''    
+        #                      Name: 국어, dtype: int64  
         
-        
+        # ic| df4:        국어  영어  수학  사회
+        #  qzkUT  27  48  83   6
+        #  sITHj  77   5  87  82
+        #  uIIsq  46  62   3  37
+        #  VTsOM  81  40  60   1
+        #  fTkEE  90  44  68  86
+        #  oMzkF   6   7   2  13
+        #  AwbuK  80  90  77  46
+        #  YfqbZ  48   0  28  37
+        #  gLRqD  56  86  60  49
 
-    def id(self):
-        rand_str = ''
-        for i in range(5):
-            rand_str += random.choice(string.ascii_letters)
-        return rand_str
+    # def id(self):
+    #     rand_str = ''
+    #     for i in range(5):
+    #         rand_str += random.choice(string.ascii_letters)
+    #     return rand_str
     
-    def score(self):
-        return random.sample(range(0,100), 4)
+    # def score(self):
+    #     return random.sample(range(0,100), 4)
 
-    def quiz_04(self):
-        ic(self.id())
-        ic(self.score())
-        df4 = pd.DataFrame.from_dict({self.id():self.score()}, orient='index', columns=['국어', '영어', '수학', '사회'])
-        for i in range(8):
-            df4 = pd.concat([df4,pd.DataFrame.from_dict({self.id():self.score()}, orient='index', columns=['국어', '영어', '수학', '사회'])],axis=0)
+    # def quiz_04(self):
+    #     ic(self.id())
+    #     ic(self.score())
+    #     df4 = pd.DataFrame.from_dict({self.id():self.score()}, orient='index', columns=['국어', '영어', '수학', '사회'])
+    #     for i in range(8):
+    #         df4 = pd.concat([df4,pd.DataFrame.from_dict({self.id():self.score()}, orient='index', columns=['국어', '영어', '수학', '사회'])],axis=0)
         
-        ic(df4)
+    #     ic(df4)
         
     
 

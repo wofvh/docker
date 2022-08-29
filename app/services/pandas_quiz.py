@@ -5,8 +5,6 @@ import numpy as np
 import string
 
 class PandasQuiz(object):
-    def __init__(self) -> None:
-        pass
     
     def quiz_01(self) -> None :
         df = pd.DataFrame.from_dict(

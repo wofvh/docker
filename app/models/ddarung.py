@@ -25,29 +25,30 @@ class DDarung:
         this.fname = fname
         return pd.read_csv(this.path+this.fname)
     
-    def missing_value_process_median(self):
-
+    def missing_median(self,this):
+        train_set = this.train
         ###### 결측치 처리 1.median ##### 
-        print(train_set.isnull().sum()) #각 컬럼당 결측치의 합계
         train_set = train_set.fillna(train_set.median())
-        print(train_set.isnull().sum())
-        print(train_set.shape)
         test_set = test_set.fillna(test_set.median())
-    def missing_value_process_interpolate(self):
+        return this
+    
+    def missing_value_process_interpolate(self,this):
         print(train_set.isnull().sum()) #각 컬럼당 결측치의 합계
         train_set = train_set.interpolate()
         print(train_set.isnull().sum())
         print(train_set.shape)
         test_set = test_set.interpolate()
+        return this
         
-    def missing_value_process_mean(self):
+    def missing_value_process_mean(self,this):
         print(train_set.isnull().sum()) #각 컬럼당 결측치의 합계
         train_set = train_set.fillna(train_set.mean())
         print(train_set.isnull().sum())
         print(train_set.shape)
         test_set = test_set.fillna(test_set.mean())
+        return this
         
-    def missing_value_process_drop(self):
+    def missing_value_process_drop(self,this):
         train_set = self.train_set
         test_set = self.test_set
         print(train_set.isnull().sum()) #각 컬럼당 결측치의 합계
@@ -55,6 +56,7 @@ class DDarung:
         print(train_set.isnull().sum())
         print(train_set.shape)
         test_set2 = test_set.dropna()
+        return this
 
     def outliers(data_out):
         quartile_1, q2 , quartile_3 = np.percentile(data_out,

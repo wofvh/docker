@@ -26,7 +26,7 @@ class Url:
             print(f'이름: {name} \
                 학점: {GradeService().get_grade(name,korean, english, math)}')
         elif menu == DDARUNG: DDarungService().submit(
-            path='/C:/study/_data/ddarung/', train = 'train.csv', test = 'test.csv'
+            path='data/ddarung/', train = 'train.csv', test = 'test.csv'
             )
             
         elif menu == QUIZ_1: PandasQuiz().quiz_01()

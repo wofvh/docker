@@ -1,3 +1,4 @@
+from fnmatch import fnmatchcase
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import numpy as np 
@@ -5,6 +6,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import BaggingRegressor
 from sklearn.tree import DecisionTreeRegressor
 from app.utils.context import Context
+
 class DDarung:
     
     context = Context()
@@ -17,37 +19,11 @@ class DDarung:
         self.x_test = None
         self.y_test = None
         
-    
-    def hook(self,path,train,test):
-        self.from_csv(path,train,test)
-        self.preprocess()
-        self.learning()
-        self.test()
-    
-    def from_csv(self,path,train,test):
-        this = self.context()
+    def from_csv(self,path, fname):
+        this = self.context
         this.path = path
         this.fname = fname
         return pd.read_csv(this.path+this.fname)
-    
-        train_set = pd.read_csv(path + train,)
-        test_set = pd.read_csv(path + test, )
-        # submission = pd.read_csv(path + 'submission.csv',#예측에서 쓸거야!!
-        #                        index_col=0)
-                            
-        # print(test_set)
-        # print(test_set.shape) #(715, 9) #train_set과 열 값이 '1'차이 나는 건 count를 제외했기 때문이다.예측 단계에서 값을 대입
-
-        # print(test_set.columns)
-        # print(train_set.info()) #null은 누락된 값이라고 하고 "결측치"라고도 한다.
-        # print(train_set.describe()) 
-    
-    def preprocess(self):
-        self.missing_value_process_median()
-        self.missing_value_process_interpolate()
-        self.missing_value_process_mean()
-        self.missing_value_process_drop()
-        
     
     def missing_value_process_median(self):
 
@@ -147,9 +123,6 @@ class DDarung:
                                 n_jobs=-1,
                                 random_state=123
                                 )
-        # Bagging 할 때는 스케일링이 무조건 필요하다.
-        # Bagging(Bootstrap Aggregating)
-        # 한가지 모델을 여러번 훈련한다.대표적인 Ensemble 모데 랜덤포레스트
 
         #3. 훈련
         model.fit(x_train,y_train)

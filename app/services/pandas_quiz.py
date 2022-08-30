@@ -13,7 +13,7 @@ class PandasQuiz(object):
             columns=['a','b','c']
         )
         ic(df)
-    def quiz_2(self) :
+    def quiz_02(self) :
         df = pd.DataFrame([[1,2,3],
                         [4,5,6],
                         [7,8,9],

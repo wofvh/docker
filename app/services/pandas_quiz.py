@@ -13,11 +13,11 @@ class PandasQuiz(object):
             columns=['a','b','c']
         )
         ic(df)
-    
-    def quiz_02(self) -> None:
-        df = pd.DataFrame.from_dict(
-            ['1':[1,2,3],'2',[4,5,6],'3',[7,8,9],'4',[10,11,12]],orient='index',
-            columns=['a','b','c',])
+    def quiz_2(self) :
+        df = pd.DataFrame([[1,2,3],
+                        [4,5,6],
+                        [7,8,9],
+                        [10,11,12]], index=range(1,5), columns=['A','B','C'])
         ic(df)
         
     def quiz_03(self):
@@ -44,7 +44,7 @@ class PandasQuiz(object):
                            index = self.id,
         columns=['국어','영어','수학','사회'])[f'{self.subject}']
         ic(df5)
-    def quiz_6(self):
+    def quiz_06(self):
         df6 = pd.DataFrame(self.score(),
                            index= self.id(),
                            columns=['국어','영어','수학','사회'])

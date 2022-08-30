@@ -12,8 +12,6 @@ class DDarung:
     context = Context()
     
     def __init__(self) -> None:
-        self.train_set = None
-        self.test_set = None
         self.train_set_clean = None
         self.model = None
         self.x_test = None
@@ -25,37 +23,32 @@ class DDarung:
         this.fname = fname
         return pd.read_csv(this.path+this.fname)
     
-    def missing_median(self,this):
-        train_set = this.train
-        ###### 결측치 처리 1.median ##### 
-        train_set = train_set.fillna(train_set.median())
-        test_set = test_set.fillna(test_set.median())
+    def fillna_median(self, this):
+        train = this.train
+        test = this.test
+        this.train = train.fillna(train.median())
+        this.test = test.fillna(test.median())
         return this
     
-    def missing_value_process_interpolate(self,this):
-        print(train_set.isnull().sum()) #각 컬럼당 결측치의 합계
-        train_set = train_set.interpolate()
-        print(train_set.isnull().sum())
-        print(train_set.shape)
-        test_set = test_set.interpolate()
+    def fillna_interpolate(self, this):
+        train = this.train
+        test = this.test
+        this.train = train.interpolate()
+        this.test = test.interpolate()
         return this
         
-    def missing_value_process_mean(self,this):
-        print(train_set.isnull().sum()) #각 컬럼당 결측치의 합계
-        train_set = train_set.fillna(train_set.mean())
-        print(train_set.isnull().sum())
-        print(train_set.shape)
-        test_set = test_set.fillna(test_set.mean())
+    def fillna_mean(self, this):
+        train = this.train
+        test = this.test
+        this.train = train.fillna(train.mean())
+        this.test = test.fillna(test.mean())
         return this
-        
-    def missing_value_process_drop(self,this):
-        train_set = self.train_set
-        test_set = self.test_set
-        print(train_set.isnull().sum()) #각 컬럼당 결측치의 합계
-        train_set2 = train_set.dropna()
-        print(train_set.isnull().sum())
-        print(train_set.shape)
-        test_set2 = test_set.dropna()
+    
+    def drop_na(self, this):
+        train = this.train
+        test = this.test
+        this.train = train.dropna()
+        this.test = test.dropna()
         return this
 
     def outliers(data_out):
@@ -70,19 +63,23 @@ class DDarung:
         upper_bound = quartile_3 + (iqr * 1.5)
         return np.where((data_out>upper_bound)|
                         (data_out<lower_bound))
-    
-    def dont_know(self):
+        
+        '''
         # Index(['hour', 'hour_bef_temperature', 'hour_bef_precipitation',
         #        'hour_bef_windspeed', 'hour_bef_humidity', 'hour_bef_visibility',
         #        'hour_bef_ozone', 'hour_bef_pm10', 'hour_bef_pm2.5', 'count'],  
-        train_set = self.train_set  
-        hour_bef_precipitation_out_index= self.outliers(train_set['hour_bef_precipitation'])[0]
-        hour_bef_windspeed_out_index= self.outliers(train_set['hour_bef_windspeed'])[0]
-        hour_bef_humidity_out_index= self.outliers(train_set['hour_bef_humidity'])[0]
-        hour_bef_visibility_out_index= self.outliers(train_set['hour_bef_visibility'])[0]
-        hour_bef_ozone_out_index= self.outliers(train_set['hour_bef_ozone'])[0]
-        hour_bef_pm10_out_index= self.outliers(train_set['hour_bef_visibility'])[0]
-        hour_bef_pm25_out_index= self.outliers(train_set['hour_bef_pm2.5'])[0]
+            '''    
+    
+    
+    def make_stereotype(self, this):
+        train = this.train 
+        hour_bef_precipitation_out_index= self.outliers(train['hour_bef_precipitation'])[0]
+        hour_bef_windspeed_out_index= self.outliers(train['hour_bef_windspeed'])[0]
+        hour_bef_humidity_out_index= self.outliers(train['hour_bef_humidity'])[0]
+        hour_bef_visibility_out_index= self.outliers(train['hour_bef_visibility'])[0]
+        hour_bef_ozone_out_index= self.outliers(train['hour_bef_ozone'])[0]
+        hour_bef_pm10_out_index= self.outliers(train['hour_bef_visibility'])[0]
+        hour_bef_pm25_out_index= self.outliers(train['hour_bef_pm2.5'])[0]
         # print(train_set2.loc[hour_bef_precipitation_out_index,'hour_bef_precipitation'])
         lead_outlier_index = np.concatenate((hour_bef_precipitation_out_index,
                                             hour_bef_windspeed_out_index,
@@ -91,27 +88,27 @@ class DDarung:
                                             hour_bef_ozone_out_index,
                                             hour_bef_pm10_out_index,
                                             hour_bef_pm25_out_index),axis=None)
-        print(len(lead_outlier_index)) #161개 
-        print(lead_outlier_index)
+        
+        
         lead_not_outlier_index = []
-        for i in train_set.index:
+        for i in train.index:
             if i not in lead_outlier_index :
                 lead_not_outlier_index.append(i)
-        train_set_clean = train_set.loc[lead_not_outlier_index]      
-        train_set_clean = train_set_clean.reset_index(drop=True)
-        print(train_set_clean)
+        train = train.loc[lead_not_outlier_index]      
+        train = train.reset_index(drop=True)
+        this.train = train
+        return this
+    
+    def extract_label_in_train(self, this):
+        train = this.train
+        this.label = train['count']
+        this.train = train.drop(['count'],axis=1)
+        Context.show_spec(this.train)
+        return this
 
-    def learning(self):
-        train_set_clean = self.train_set_clean
-        x = train_set_clean.drop(['count'],axis=1) #axis는 컬럼 
-        print(x.columns)
-        print(x.shape) #(1459, 9)
-
-        y = train_set_clean['count']
-        
-        x = np.array(x)
-        y = np.array(y)
-
+    def learning(self, this):
+        x = np.array(this.train)
+        y = np.array(this.label)
         x_train, x_test, y_train, y_test = train_test_split(x, y, shuffle=True, train_size=0.7, random_state=1234)
 
         scaler = StandardScaler()
@@ -120,14 +117,18 @@ class DDarung:
 
         #2. 모델
         
-        model = BaggingRegressor(DecisionTreeRegressor(),
+        this.model = BaggingRegressor(DecisionTreeRegressor(),
                                 n_estimators=100,#해당 모델을 100번 훈련한다.
                                 n_jobs=-1,
                                 random_state=123
                                 )
+        # Bagging 할 때는 스케일링이 무조건 필요하다.
+        # Bagging(Bootstrap Aggregating)
+        # 한가지 모델을 여러번 훈련한다.대표적인 Ensemble 모데 랜덤포레스트
 
         #3. 훈련
-        model.fit(x_train,y_train)
+        this.model.fit(x_train,y_train)
+        return this
 
     def test(self):
         #4. 평가, 예측
@@ -135,3 +136,27 @@ class DDarung:
         y_test = self.y_test
         model = self.model
         print('model.score :',model.score(x_test,y_test))
+
+
+        #=================  결측치 median 처리  =============  
+        # tree-0.5338291078101032
+        # forest-0.7827754490472193
+        # xgb-0.7864238734420762   
+        #=================  결측치 interpolate 처리  =============  
+        # tree-0.65829171863489
+        # forest-0.7879504683704567
+        # xgb-0.7914603072315469
+        #=================  결측치 mean 처리  =============  
+        # tree-0.6058261668039286
+        # forest-0.7857045058880551
+        # xgb-0.7967861479060181
+
+        ######Bagging 후 r2 Df
+        # model.score : 0.7877370090310412
+
+        ######Bagging 후 r2 model xgb
+        # model.score : 0.8107202578169292
+
+        ######Bagging 후 r2 model rf
+        # model.score : 0.7753138544272746
+

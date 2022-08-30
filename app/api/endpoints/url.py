@@ -25,9 +25,7 @@ class Url:
             math = int(input('수학'))
             print(f'이름: {name} \
                 학점: {GradeService().get_grade(name,korean, english, math)}')
-        elif menu == DDARUNG: DDarungService().submit(
-            path='data/ddarung/', train = 'train.csv', test = 'test.csv'
-            )
+     
             
         elif menu == QUIZ_1: PandasQuiz().quiz_01()
         elif menu == QUIZ_2: PandasQuiz().quiz_02()
@@ -38,3 +36,5 @@ class Url:
             PandasQuiz().quiz_05(subject)
         elif menu == QUIZ_6: PandasQuiz().quiz_06()
         elif menu == QUIZ_7: PandasQuiz().quiz_07()
+        elif menu == DDARUNG: DDarungService().submit(
+            path='data/ddarung/', train='train.csv', test='test.csv')

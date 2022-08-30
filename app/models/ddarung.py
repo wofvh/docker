@@ -51,7 +51,7 @@ class DDarung:
         this.test = test.dropna()
         return this
 
-    def outliers(data_out):
+    def outliers(self, data_out):
         quartile_1, q2 , quartile_3 = np.percentile(data_out,
                                                 [25,50,75]) # percentile 백분위
         print("1사분위 : ",quartile_1) # 25% 위치인수를 기점으로 사이에 값을 구함
@@ -63,14 +63,11 @@ class DDarung:
         upper_bound = quartile_3 + (iqr * 1.5)
         return np.where((data_out>upper_bound)|
                         (data_out<lower_bound))
-        
-        '''
-        # Index(['hour', 'hour_bef_temperature', 'hour_bef_precipitation',
-        #        'hour_bef_windspeed', 'hour_bef_humidity', 'hour_bef_visibility',
-        #        'hour_bef_ozone', 'hour_bef_pm10', 'hour_bef_pm2.5', 'count'],  
-            '''    
-    
-    
+    '''
+    Index(['hour', 'hour_bef_temperature', 'hour_bef_precipitation',
+               'hour_bef_windspeed', 'hour_bef_humidity', 'hour_bef_visibility',
+               'hour_bef_ozone', 'hour_bef_pm10', 'hour_bef_pm2.5', 'count'],  
+    '''
     def make_stereotype(self, this):
         train = this.train 
         hour_bef_precipitation_out_index= self.outliers(train['hour_bef_precipitation'])[0]
@@ -88,8 +85,8 @@ class DDarung:
                                             hour_bef_ozone_out_index,
                                             hour_bef_pm10_out_index,
                                             hour_bef_pm25_out_index),axis=None)
-        
-        
+        print(len(lead_outlier_index)) #161개 
+        print(lead_outlier_index)
         lead_not_outlier_index = []
         for i in train.index:
             if i not in lead_outlier_index :
@@ -102,8 +99,8 @@ class DDarung:
     def extract_label_in_train(self, this):
         train = this.train
         this.label = train['count']
-        this.train = train.drop(['count'],axis=1)
-        Context.show_spec(this.train)
+        this.train = train.drop(['count'],axis=1) 
+        # Context.show_spec(this.train)
         return this
 
     def learning(self, this):
@@ -115,9 +112,7 @@ class DDarung:
         x_train = scaler.fit_transform(x_train)
         x_test = scaler.transform(x_test)
 
-        #2. 모델
-        
-        this.model = BaggingRegressor(DecisionTreeRegressor(),
+        model = BaggingRegressor(DecisionTreeRegressor(),
                                 n_estimators=100,#해당 모델을 100번 훈련한다.
                                 n_jobs=-1,
                                 random_state=123
@@ -125,18 +120,11 @@ class DDarung:
         # Bagging 할 때는 스케일링이 무조건 필요하다.
         # Bagging(Bootstrap Aggregating)
         # 한가지 모델을 여러번 훈련한다.대표적인 Ensemble 모데 랜덤포레스트
-
         #3. 훈련
-        this.model.fit(x_train,y_train)
-        return this
-
-    def test(self):
+        model.fit(x_train,y_train)
         #4. 평가, 예측
-        x_test = self.x_test
-        y_test = self.y_test
-        model = self.model
         print('model.score :',model.score(x_test,y_test))
-
+        return this
 
         #=================  결측치 median 처리  =============  
         # tree-0.5338291078101032
@@ -159,4 +147,3 @@ class DDarung:
 
         ######Bagging 후 r2 model rf
         # model.score : 0.7753138544272746
-

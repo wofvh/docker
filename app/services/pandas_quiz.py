@@ -41,9 +41,10 @@ class PandasQuiz(object):
     def quiz_05(self,subject):
         self.subject = subject
         df5 = pd.DataFrame(self.score(),
-                           index = self.id,
-        columns=['국어','영어','수학','사회'])[f'{self.subject}']
+                           index = self.id(),
+                           columns=['국어', '영어', '수학', '사회'])[f'{self.subject}']
         ic(df5)
+        
     def quiz_06(self):
         df6 = pd.DataFrame(self.score(),
                            index= self.id(),

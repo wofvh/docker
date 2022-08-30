@@ -39,23 +39,42 @@ class PandasQuiz(object):
         return df
     
     def quiz_05(self,subject):
-        self.subject = subject
-        df5 = pd.DataFrame(self.score(),
-                           index = self.id(),
-                           columns=['국어', '영어', '수학', '사회'])[f'{self.subject}']
-        ic(df5)
+        scores = self.quiz_04()
+        scores.loc[:,subject]
+    
+    # def quiz_05(self,subject):
+    #     self.subject = subject
+    #     df5 = pd.DataFrame(self.score(),
+    #                        index = self.id(),
+    #                        columns=['국어', '영어', '수학', '사회'])[f'{self.subject}']
+    #     ic(df5)
+    
+    def quiz_06(self, id) :
+        print(f'{id}의 성적출력') # 당연히 id 가 일치할리 없음. 형식적으로 출력함
+        scores = self.quiz_04()
+        ic(scores.iloc[[0],:])
         
-    def quiz_06(self):
-        df6 = pd.DataFrame(self.score(),
-                           index= self.id(),
-                           columns=['국어','영어','수학','사회'])
-        ic(df6.iloc[[0]])
+    # def quiz_06(self):
+    #     df6 = pd.DataFrame(self.score(),
+    #                        index= self.id(),
+    #                        columns=['국어','영어','수학','사회'])
+    #     ic(df6.iloc[[0]])
+     
+    def quiz_07(self) :
+        scores = self.quiz_04()
+        scores['총점'] = scores.sum(axis=1)
+        ls = scores.sum().tolist()
+        scores.loc['과목총점']= ls
+        ic(scores)
         
-    def quiz_07(self):
-        random_num = np.random.randint(0,101,(10,5))
-        df7 = pd.DataFrame(random_num,index = self.id(),
-                           columns=['국어','영어','수학','사회','과학'])
-        df7['총점'] = df7['국어'] + df7['영어'] + df7['수학']+df7['사회'] \
-            + df7['과학']
-        df7.loc['과목총점']=df7.sum(axis=0)
-        ic(df7)
+        
+        
+                   
+    # def quiz_07(self):
+    #     random_num = np.random.randint(0,101,(10,5))
+    #     df7 = pd.DataFrame(random_num,index = self.id(),
+    #                        columns=['국어','영어','수학','사회','과학'])
+    #     df7['총점'] = df7['국어'] + df7['영어'] + df7['수학']+df7['사회'] \
+    #         + df7['과학']
+    #     df7.loc['과목총점']=df7.sum(axis=0)
+    #     ic(df7)

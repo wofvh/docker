@@ -33,10 +33,11 @@ class Url:
         elif menu == QUIZ_2: PandasQuiz().quiz_02()
         elif menu == QUIZ_3: PandasQuiz().quiz_03()
         elif menu == QUIZ_4: PandasQuiz().quiz_04()
-        elif menu == QUIZ_5: 
-            subject = input("과목명")
-            PandasQuiz().quiz_05 (subject)
-        elif menu == QUIZ_6: PandasQuiz().quiz_06()
+        # elif menu == QUIZ_5: 
+        #     subject = input("과목명")
+        #     PandasQuiz().quiz_05 (subject)
+        elif menu == QUIZ_5: PandasQuiz().quiz_05('국어')
+        elif menu == QUIZ_6: PandasQuiz().quiz_06('홍길동')
         elif menu == QUIZ_7: PandasQuiz().quiz_07()
         elif menu == DDARUNG: DDarungService().submit(
             path='data/ddarung/', train='train.csv', test='test.csv')

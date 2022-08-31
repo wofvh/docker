@@ -9,7 +9,6 @@ from tensorflow.python.keras.models import Sequential, Model
 from tensorflow.python.keras.layers import Activation, Dense, Conv2D, Flatten, MaxPooling2D, Input, Dropout
 from tensorflow.python.keras.utils.np_utils import to_categorical
 from sklearn.model_selection import StratifiedKFold
-
 # Define Generator
 class DataGenerator(keras.utils.Sequence):
     def __init__(self, batch_size, df, image_size, mode='train', shuffle=True): # 생성자 : 배치사이즈, 데이터프레임, 모드(학습,검증) , 셔플(섞어서들어가기)

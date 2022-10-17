@@ -12,7 +12,7 @@ def print_menu():
     print(f'계산기 : {CALCULATOR}')
     print(f'성적표 : {GRADE}') 
     print(f'퀴즈 1 : {QUIZ_1}') 
-    print(f'퀴즈 2 : {QUIZ_2}')
+    print(f'퀴즈 2 : {QUIZ_2}') 
     print(f'퀴즈 3 : {QUIZ_3}')
     print(f'퀴즈 4 : {QUIZ_4}')
     print(f'퀴즈 4 : {QUIZ_5}')

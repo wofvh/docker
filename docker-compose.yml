@@ -21,6 +21,7 @@ services:
       - local-net
 
   # FastAPI
+  # fastapi
   api:
     links:
       - db
